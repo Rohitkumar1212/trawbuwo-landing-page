@@ -28,14 +28,16 @@ const CategoryCarousel = () => {
         loop={true}
         autoplay={{ delay: 3000 }}
         spaceBetween={10}
-        slidesPerView={3}
+        slidesPerView={1}
         breakpoints={{
-          768: { slidesPerView: 3 },
           480: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 },
         }}
       >
         {categories.map((cat) => (
-          <SwiperSlide key={cat.id}>
+          <SwiperSlide 
+          key={cat.id}>
             <div className="p-2">
               <div className="bg-white rounded-lg overflow-hidden shadow">
                 <img
