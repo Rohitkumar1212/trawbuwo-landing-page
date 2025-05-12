@@ -2,6 +2,7 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from './redux-provider';
+import Navbar from "@/components/Navbar";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -18,7 +19,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={plusJakarta.className} suppressHydrationWarning>
       <body>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <Navbar/>
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

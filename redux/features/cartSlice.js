@@ -1,46 +1,31 @@
-// // redux/features/cartSlice.js
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const initialState = {
-//   items: [],
-// };
-
-// const cartSlice = createSlice({
-//   name: 'cart',
-//   initialState,
-//   reducers: {
-//     addToCart(state, action) {
-//       state.items.push(action.payload);
-//     },
-//     removeFromCart(state, action) {
-//       state.items = state.items.filter(item => item.id !== action.payload);
-//     },
-//     clearCart(state) {
-//       state.items = [];
-//     },
-//   },
-// });
-
-// export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
-// export default cartSlice.reducer;
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  count: 0,
+  items: [],
+  totalQuantity: 0,  // Add totalQuantity to track the count
 };
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.count += 1;
+    addToCart(state, action) {
+      state.items.push(action.payload);
+      state.totalQuantity += 1;  // Increment totalQuantity
     },
-    decrement: (state) => {
-      state.count -= 1;
+    removeFromCart(state, action) {
+      const itemIndex = state.items.findIndex(item => item.id === action.payload);
+      if (itemIndex >= 0) {
+        state.items.splice(itemIndex, 1);
+        state.totalQuantity -= 1;  // Decrement totalQuantity
+      }
+    },
+    clearCart(state) {
+      state.items = [];
+      state.totalQuantity = 0;  // Reset totalQuantity
     },
   },
 });
 
-export const { increment, decrement } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
