@@ -1,14 +1,21 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const categories = [
-  { id: 1, name: 'Electronics', image: '/images/electronics.jpg' },
+  { id: 1, name: 'Electronics', image: '/images/electronic.jpg' },
   { id: 2, name: 'Fashion', image: '/images/fashion.jpg' },
-  { id: 3, name: 'Home Appliances', image: '/images/home-appliances.jpg' },
-  { id: 4, name: 'Beauty', image: '/images/beauty.jpg' },
-  // Add more categories as needed
+  { id: 3, name: 'Home Appliances', image: '/images/electronic.jpg' },
+  { id: 4, name: 'Beauty', image: '/images/fashion.jpg' },
+  { id: 5, name: 'Books', image: '/images/orange.png' },
+  { id: 6, name: 'Toys', image: '/images/electronic.jpg' },
+  { id: 7, name: 'Fitness', image: '/images/fashion.jpg' },
+  { id: 8, name: 'Groceries', image: '/images/orange.png' },
+  { id: 9, name: 'Automotive', image: '/images/electronic.jpg' },
+  { id: 10, name: 'Garden', image: '/images/orange.png' },
 ];
 
 const CategoryCarousel = () => {
@@ -16,14 +23,16 @@ const CategoryCarousel = () => {
     <div className="px-4 py-6">
       <h2 className="text-lg font-semibold mb-4">Shop by Category</h2>
       <Swiper
+        modules={[Navigation, Autoplay]}
+        navigation={true} // ✅ Enables Swiper's default nav arrows
+        loop={true}
+        autoplay={{ delay: 3000 }}
         spaceBetween={10}
         slidesPerView={3}
         breakpoints={{
-          768: { slidesPerView: 2 },
-          480: { slidesPerView: 1 },
+          768: { slidesPerView: 3 },
+          480: { slidesPerView: 2 },
         }}
-        loop={true}
-        autoplay={{ delay: 3000 }}
       >
         {categories.map((cat) => (
           <SwiperSlide key={cat.id}>
@@ -32,7 +41,7 @@ const CategoryCarousel = () => {
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-40 object-cover"
+                  className="w-full h-40 object-fill"
                 />
                 <p className="text-center font-medium mt-2">{cat.name}</p>
               </div>

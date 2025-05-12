@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
         <p className="text-gray-500">${product.price}</p>
         <button
           onClick={handleAddToCart}
-          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded cursor-pointer"
         >
           Add to Cart
         </button>
